@@ -1,0 +1,80 @@
+<!--load static files-->
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %} {% endblock %}</title>
+
+    <!--Bootstrap CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!--google font style sheet for concert one style-->
+    <link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
+
+    <!--link to internal styles.css sheet-->
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+
+<body>
+<div id="container">
+    <div id="main">
+        <!--Navbar class expand small-->
+        <nav class="navbar sticky-top navbar-expand-sm">
+
+            <!--Anchor tag for site brand-->
+            <a class="navbar-brand grow" href="">Vendor Management Portal</a>
+
+            <!--button class for hamburger icon-->
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#hamburgermenu">
+            <span class="navbar-toggler-icon">
+                <!--defined in my css file-->
+            </span>
+            </button>
+
+            <!--Collapsable navbar-->
+            <div class="collapse navbar-collapse" id="hamburgermenu">
+                <li class="nav-item list-unstyled">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+
+                <li class="nav-item list-unstyled">
+                    <a class="nav-link" href="accounts/signup">Signup</a>
+                </li>
+
+            </div> <!--End collapsable navbar-->
+
+        </nav>  <!--end of navbar class expand small-->
+
+        <!--body container for each individual pages content-->
+        <div class="bodyContainer">
+            {% block content %}
+
+            {% endblock %}
+
+        </div>  <!--end body container-->
+
+    </div> <!--end id main-->
+
+</div>  <!--end id container-->
+
+<!--footer for Mow n Go-->
+<footer class="footer" id="footer">
+    Service Center
+    <br>
+    Monday - Friday 8:00 a.m. - 4:00 p.m.
+    <br>
+    913-208-0068
+    <br>
+    <a href="mailto:burggrafdev88@gmail.com"><em>ServiceCenter@gmail.com</em></a>
+</footer>  <!-- End Footer -->
+
+<!--jQuery, JS Popper, and Bootstrap.js-->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

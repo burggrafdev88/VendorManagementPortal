@@ -1,0 +1,92 @@
+
+html, body{
+    background-color: #EDF5E1;
+    font-family: 'Concert One', cursive;
+    height: 100%;
+}
+
+/*styles for all p elements immediately after h1 elements*/
+h1 + p{
+    font-size: 1.25em;
+}
+
+.bodyContainer{
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-top: .5em;
+}
+
+/**********styles to push footer towards bottom of page**********/
+#container{
+    min-height: 100%;
+}
+
+#main{
+    overflow: auto;  /*creates scroll bar once this section extends past one page*/
+    padding-bottom: 100px;  /*must match footer height, prevents content in main from disappearing behind footer*/
+}
+
+/*additional footer styles below*/
+#footer{
+    position: relative;  /*positioned relative to its normal position*/
+    height: 100px;
+    margin-top: -100px;   /*equal to negative height of the footer - without this, footer would be pushed below height
+    of the viewport.  This rule pulls the footer back into view.*/
+    clear: both;  /*specifies on which sides of an element floating elements are not allowed to float*/
+}
+/**********end of styles to push footer towards bottom*********/
+
+/**********navbar styles**********/
+.navbar{
+    background-color: #2F6690;
+}
+
+.grow{
+    transition: all .2s ease-in-out;
+}
+
+.grow:hover{
+    transform: scale(1.1);
+}
+
+.navbar-brand{
+    color: white;
+}
+
+.nav-item .nav-link{
+    color: #05386b;
+    font-size: 1.25em;
+}
+
+.nav-item a:hover {
+    color: #D9DCD6; !important;
+}
+
+.navbar-text {
+    color: white;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1.0)' stroke-width='4' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar-nav .open .dropdown-menu{
+    background-color: yellow;
+    /*background-color: #292b2c;*/
+}
+
+/**********end of navbar styles**********/
+
+
+/**********styles for footer**********/
+.footer{
+    text-align: center;
+    color: #D9DCD6;
+    background-color: #2F6690;
+}
+
+/**********styles for sign-up and login forms**********/
+.form-container {
+    width: 50%;
+    margin-bottom: 1em;
+}
