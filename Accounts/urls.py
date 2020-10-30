@@ -16,6 +16,8 @@ Including another URLconf
 from django.urls import path
 from . import views
 
+# URL path calls the views
 urlpatterns = [
     path('signup', views.signup, name="signup"),
+    path('login', views.login, name="login"),
 ]

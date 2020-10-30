@@ -4,6 +4,9 @@
 <!--load static files-->
 {% load static %}
 
+<!--load crispy forms-->
+{% load crispy_forms_tags %}
+
 {% block title %}
     Signup - Vendor Management Portal
 {% endblock %}
@@ -14,9 +17,14 @@
 
     <div class="form-container">
         <form action="/accounts/signup" method="post">
+            <!--Django token to protest against cross site request forgeries. Token should be used inside any template
+           that uses a POST form that targets internal URLs.-->
             {% csrf_token %}
-            {{ form }}
-            {{ profile_form }}
+
+            <!--form and profile_form with cripsy filter-->
+            {{ form|crispy }}
+            {{ profile_form|crispy }}
+
             <input class="btn btn-success" type="submit" value="Signup">
         </form>
     </div>

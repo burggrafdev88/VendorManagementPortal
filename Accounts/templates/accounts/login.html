@@ -1,0 +1,26 @@
+{% extends "base_layout.html" %}
+
+<!--load crispy forms-->
+{% load crispy_forms_tags %}
+
+{% block title %}
+Vendor Management Portal - Login
+{% endblock %}
+
+{% block content %}
+
+    <div class="form-container">
+        <form action="/accounts/login" method="post">
+            <!--Django token to protest against cross site request forgeries. Token should be used inside any template
+            that uses a POST form that targets internal URLs.-->
+            {% csrf_token %}
+
+            <!--form with cripsy filter-->
+            {{ form|crispy }}
+
+            <button type="submit" class="btn btn-success">Login</button>
+            <p>To sign up for an account, please click <a href="/accounts/signup">here</a>.</p>
+        </form>
+    </div>
+
+{% endblock %}
