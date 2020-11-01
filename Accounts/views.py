@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout
 from .forms import SignUpForm, ProfileForm
 from django.http import HttpResponse
 
@@ -37,15 +38,25 @@ def signup(request):
     return render(request, 'accounts/signup.html', {'form': form, 'profile_form': profile_form})
 
 
-def login(request):
+def login_view(request):
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
-            # log user in
-            return HttpResponse("Logged in bro!")
+            # log User in
+            user = form.get_user()
+            login(request, user)
+            print("Should be logged in.")
+            return redirect('/accounts/login')
 
     # if request is not equal to POST, create login form then render login page.
     else:
         form = AuthenticationForm()
 
     return render(request, 'accounts/login.html', {'form': form})
+
+
+def logout_view(request):
+    if request.method == "POST":
+        logout(request)
+        # return HttpResponse("Logged out bro!")
+        return redirect('/accounts/login')

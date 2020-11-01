@@ -22,7 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home),
     path('accounts/', include('Accounts.urls')),
-    path('addVendor/', views.add_vendor),
+    path('vendors/', include('Vendors.urls')),
 ]
 
 # Checks to ensure we are in debug mode. If so, it will append so we can load static files.

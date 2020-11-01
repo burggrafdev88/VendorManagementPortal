@@ -75,6 +75,10 @@ h1 + p{
     /*background-color: #292b2c;*/
 }
 
+.nav-item.list-unstyled.align-right{
+    align-content: right;
+}
+
 /**********end of navbar styles**********/
 
 
