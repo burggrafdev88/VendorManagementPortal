@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<!--load base layout-->
+{% extends 'base_layout.html' %}
 
-</body>
-</html>
+<!--load static files-->
+{% load static %}
+
+<!--load crispy forms-->
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Submit VIF - Vendor Management Portal
+{% endblock %}
+
+{% block content %}
+    <h1>Submit Vendor Information Form</h1>
+    <p>Please fill in the information below to submit a vendor information form.</p>
+
+    <div class="form-container">
+        <form action="/vendors/submit_vif" method="post">
+            <!--Django token to protest against cross site request forgeries. Token should be used inside any template
+           that uses a POST form that targets internal URLs.-->
+            {% csrf_token %}
+
+            <!--form for vendor information form with cripsy filter-->
+            {{ form|crispy }}
+
+            <input class="btn btn-success" type="submit" value="Submit">
+        </form>
+    </div>
+{% endblock %}
