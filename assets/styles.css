@@ -96,3 +96,40 @@ h1 + p{
     margin-bottom: 1em;
 }
 /**********end of styles for sign-up and login forms**********/
+
+/**********styles for viewing vendors in my_vendors table**********/
+
+/*Styles for customer viewing "my requests" and "my bids" tables.*/
+.table-format{
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.table-format td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.table-format tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+.table-format tr:hover {
+    background-color: #ddd;
+}
+
+.table-format th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: midnightblue;
+    color: white;
+}
+
+.table-format .tableHeader{
+    text-align: center;
+}
+/**********end of styles for viewing vendors in my_vendors table**********/

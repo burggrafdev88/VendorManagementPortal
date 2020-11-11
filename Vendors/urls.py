@@ -19,4 +19,5 @@ from . import views
 # URL path calls the views
 urlpatterns = [
     path('submit_vif', views.submit_vif, name="submit_vif"),
+    path('my_vendors', views.my_vendors, name="my_vendors"),
 ]
