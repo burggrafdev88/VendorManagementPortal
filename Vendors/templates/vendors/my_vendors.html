@@ -23,6 +23,7 @@
                 <th>Date Submitted</th>
                 <th>Length of Service</th>
                 <th>Screening Status</th>
+                <th>Schedule Screening</th>
             </tr>
 
             {% for vendor in vendors %}
@@ -36,6 +37,11 @@
                     <td>{{ vendor.date_submitted }}</td>
                     <td>{{ vendor.length_of_service }}</td>
                     <td>{{ vendor.form_status }}</td>
+                    {% if vendor.form_status.id == 1%}
+                        <td>Click Here</td>
+                        {% else %}
+                        <td>N/A</td>
+                    {% endif %}
                 </tr>
             {% endfor %}
 
