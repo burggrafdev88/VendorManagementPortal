@@ -16,7 +16,7 @@
     <p>Please use the form below to schedule a screening for your vendor.</p>
 
     <div class="form-container">
-        <form action="/vendors/submit_vif" method="post">
+        <form action="/events/schedule_screening" method="post">
             <!--Django token to protest against cross site request forgeries. Token should be used inside any template
            that uses a POST form that targets internal URLs.-->
             {% csrf_token %}

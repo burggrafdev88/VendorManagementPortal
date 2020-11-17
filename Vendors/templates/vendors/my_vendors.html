@@ -38,7 +38,8 @@
                     <td>{{ vendor.length_of_service }}</td>
                     <td>{{ vendor.form_status }}</td>
                     {% if vendor.form_status.id == 1%}
-                        <td>Click Here</td>
+                        <td><a title="Click here to schedule fingerprint screening for this vendor."
+                               href="/events/schedule_screening">Click Here</a></td>
                         {% else %}
                         <td>N/A</td>
                     {% endif %}

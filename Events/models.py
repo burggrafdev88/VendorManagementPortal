@@ -32,7 +32,7 @@ class Event(models.Model):
 
     def clean(self):
         if self.end_time <= self.start_time:
-            raise ValidationError('Ending times must after starting times')
+            raise ValidationError('Ending times must after starting times!')
 
         events = Event.objects.filter(day=self.day)
         if events.exists():

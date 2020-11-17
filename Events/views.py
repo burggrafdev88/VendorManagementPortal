@@ -1,9 +1,20 @@
 from .forms import ScheduleScreeningForm
 from django.shortcuts import render, redirect
-from Events.models import Event
 
 
 # Create your views here.
 def schedule_screening(request):
-    form = ScheduleScreeningForm
+    if request.method == 'POST':
+        form = ScheduleScreeningForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('/vendors/my_vendors')
+
+    else:
+        # create the form.
+        form = ScheduleScreeningForm
+
     return render(request, 'events/schedule_screening.html', {'form': form})
+
+
