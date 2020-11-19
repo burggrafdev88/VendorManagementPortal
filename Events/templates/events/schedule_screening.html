@@ -13,7 +13,8 @@
 
 {% block content %}
     <h1>Schedule Screening</h1>
-    <p>Please use the form below to schedule a screening for your vendor.</p>
+    <p>Please use the form below to schedule a screening for <span class="emphasis">{{ vendor.f_name }}
+        {{ vendor.l_name }}.</span> </p>
 
     <div class="form-container">
         <form action="/events/schedule_screening" method="post">

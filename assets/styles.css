@@ -133,3 +133,9 @@ h1 + p{
     text-align: center;
 }
 /**********end of styles for viewing vendors in my_vendors table**********/
+
+.emphasis{
+    color: blue;
+    font-weight: bold;
+    font-style: italic;
+}

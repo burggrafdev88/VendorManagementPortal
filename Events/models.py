@@ -1,9 +1,11 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from Vendors.models import Vendor
 
 
 # Create your models here.
 class Event(models.Model):
+    vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE, null=False)
     day = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()

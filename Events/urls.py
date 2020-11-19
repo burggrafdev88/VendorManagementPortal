@@ -18,5 +18,5 @@ from . import views
 
 # URL path calls the views
 urlpatterns = [
-    path('schedule_screening', views.schedule_screening, name="schedule_screening"),
+    path('schedule_screening/<int:vendorID>', views.schedule_screening, name="schedule_screening"),
 ]
