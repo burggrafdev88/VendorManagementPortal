@@ -22,3 +22,10 @@ def schedule_screening(request, vendorID):
     return render(request, 'events/schedule_screening.html', {'form': form, 'vendor': vendor})
 
 
+def save_screening(request):
+    if request.method == 'POST':
+        form = ScheduleScreeningForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('/vendors/my_vendors')

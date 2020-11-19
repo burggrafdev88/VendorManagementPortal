@@ -17,7 +17,7 @@
         {{ vendor.l_name }}.</span> </p>
 
     <div class="form-container">
-        <form action="/events/schedule_screening" method="post">
+        <form action="/events/save_screening" method="post">
             <!--Django token to protest against cross site request forgeries. Token should be used inside any template
            that uses a POST form that targets internal URLs.-->
             {% csrf_token %}
