@@ -22,3 +22,5 @@ class VendorInformationForm(forms.ModelForm):
         model = Vendor
         fields = ["f_name", "l_name", "company", "physical_access", "logical_access", "length_of_service",
                   "work_description"]
+
+

@@ -1,5 +1,5 @@
 from .forms import ScheduleScreeningForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from Vendors.models import Vendor
 
 
@@ -12,6 +12,8 @@ def schedule_screening(request, vendorID):
 
         if form.is_valid():
             form.save()
+            vendor.form_status_id = 2   # change status of vendor form to 2
+            vendor.save()
             return redirect('/vendors/my_vendors')
 
     else:
@@ -21,11 +23,3 @@ def schedule_screening(request, vendorID):
 
     return render(request, 'events/schedule_screening.html', {'form': form, 'vendor': vendor})
 
-
-def save_screening(request):
-    if request.method == 'POST':
-        form = ScheduleScreeningForm(request.POST)
-
-        if form.is_valid():
-            form.save()
-            return redirect('/vendors/my_vendors')
