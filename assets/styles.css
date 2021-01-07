@@ -99,7 +99,17 @@ h1 + p{
 
 /**********styles for viewing vendors in my_vendors table**********/
 
-/*Styles for customer viewing "my requests" and "my bids" tables.*/
+/*Styles for viewing "my vendors" table.*/
+.flex-spread{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.flex-spread p{
+    vertical-align: bottom;
+}
+
 .table-format{
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
@@ -132,6 +142,12 @@ h1 + p{
 .table-format .tableHeader{
     text-align: center;
 }
+
+.noData{
+    text-align: center;
+    background-color: orange;
+    font-weight: bold;
+}
 /**********end of styles for viewing vendors in my_vendors table**********/
 
 .emphasis{
@@ -139,3 +155,80 @@ h1 + p{
     font-weight: bold;
     font-style: italic;
 }
+
+/**********styles for appointment editing modal**********/
+*, *::after, *::before{
+    box-sizing: border-box;
+}
+
+/*.modalClass{*/
+/*    position: fixed;  !*positioned relative to the viewport. Will stay in same place even if page is scrolled.*!*/
+/*    top: 50%;*/
+/*    left: 50%;*/
+/*    transform: translate(-50%, -50%) scale(0);  !*moves an element from its current position based on the x and y values.*!*/
+/*    transition: 300ms ease-in-out;*/
+/*    border-radius: 15px;*/
+/*    z-index: 10;*/
+/*    width: 500px;*/
+/*    max-width: 75%;*/
+/*    height: 800px;*/
+/*    max-height: 80%;*/
+/*}*/
+
+/*#addVendorModal{*/
+/*    background-color: lightgreen;*/
+/*}*/
+
+/*.modalClass.active{*/
+/*    transform: translate(-50%, -50%) scale(1);  !*set scale to 1 so it will appear*!*/
+/*}*/
+
+/*.modalClass .modal-header{*/
+/*    padding: 10px 15px;*/
+/*    display: flex;    !*flex-box*!*/
+/*    justify-content: space-between;  !*items are evenly distributed in the line; first item is on the start line,*/
+/*    last item on the end line  *!*/
+/*    border-bottom: 1px solid gray;*/
+/*}*/
+
+/*.modalClass .modal-header .title{*/
+/*    font-size: 1.5em;*/
+/*}*/
+
+/*.modalClass .modal-header .close-button{*/
+/*    font-size: 1.25em;*/
+/*    background-color: transparent;*/
+/*    border: none;*/
+/*    outline: none;*/
+/*}*/
+
+/*.modalClass .modal-header .close-button:hover {*/
+/*    transform: scale(1.2);*/
+/*}*/
+
+/*.modalClass .modal-body{*/
+/*    padding: 10px 15px;*/
+/*}*/
+
+/*#overlay{*/
+/*    position: fixed;*/
+/*    opacity: 0;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    bottom: 0;*/
+/*    right: 0;*/
+/*    background-color: rgba(0, 0, 0, .5);*/
+/*    pointer-events: none;*/
+/*}*/
+
+/*#overlay.active{*/
+/*    opacity: 1;*/
+/*    pointer-events: all;*/
+/*}*/
+
+/**********end of styles for end of appoint editing modal**********/
+
+/*.ui-timepicker-container {*/
+/*    z-index: 3500 !important;*/
+/*}*/
+

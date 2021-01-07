@@ -44,7 +44,7 @@ def login_view(request):
             # log User in
             user = form.get_user()
             login(request, user)
-            print("Should be logged in.")
+            # print("Logged in.")
             return redirect('/accounts/login')
 
     # if request is not equal to POST, create login form then render login page.
