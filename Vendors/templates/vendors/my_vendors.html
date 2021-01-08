@@ -16,7 +16,7 @@
 
     <div class="flex-spread">
         <p>Below is the information of the vendors you've submitted procurement request forms for.</p>
-        <button type="button" class="btn btn-success js-addVendor" data-toggle="modal" data-target="#vendorModal">Add
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#vendorModal">Add
             Vendor
         </button>
     </div>
@@ -32,6 +32,7 @@
             <th>Logical Access</th>
             <th>Date Submitted</th>
             <th>Length of Service</th>
+            <th>Edit Vendor</th>
             <th>Screening Status</th>
             <th>Schedule Screening</th>
         </tr>
@@ -39,15 +40,21 @@
 
         <tbody>
             {% for vendor in vendors %}
-                <tr>
+                <tr id="vendor{{ vendor.id }}">
                     <td>{{ forloop.counter }}</td>
-                    <td>{{ vendor.f_name }}</td>
+                    <td class="first_name">{{ vendor.f_name }}</td>
                     <td>{{ vendor.l_name }}</td>
                     <td>{{ vendor.company }}</td>
                     <td>{{ vendor.physical_access }}</td>
                     <td>{{ vendor.logical_access }}</td>
                     <td>{{ vendor.date_submitted }}</td>
                     <td>{{ vendor.length_of_service }}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning" id="editVendorButton{{ vendor.id }}"
+                                data-toggle="modal" data-target="#editVendorModal"
+                                onclick="editVendorFunction({{ vendor.id }})">Edit
+                        </button>
+                    </td>
                     <td>{{ vendor.form_status }}</td>
 
                     {% if vendor.form_status.id == 1 %}
@@ -91,7 +98,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <form id="addVendorForm22">
+                    <form id="addVendorForm">
                         <!--Django token to protest against cross site request forgeries. Token should be used inside any template
                        that uses a POST form that targets internal URLs.-->
                         {% csrf_token %}
@@ -99,14 +106,49 @@
                         <!--form for vendor information form with cripsy filter-->
                         {{ form|crispy }}
 
-{#                        <div class="modal-footer">#}
+                        <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                             <input class="btn btn-success" type="submit" value="Submit">
-{#                        </div>#}
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
+    </div>
+
+    <!--Modal for editing a vendor-->
+    <div class="modal fade" id="editVendorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Vendor Information</h5>
+                    <button type="button" class="btn btn-warning">Edit Vendor</button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="editVendor">
+                        <!--Django token to protest against cross site request forgeries. Token should be used inside any template
+                       that uses a POST form that targets internal URLs.-->
+                        {% csrf_token %}
+
+                        <!--form for vendor information form with cripsy filter-->
+                        {{ form|crispy }}
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <input class="btn btn-success" type="submit" value="Submit">
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 
     <!-- Modal for viewing/editing appointments. -->
@@ -188,15 +230,10 @@
         </div>
     </div>
 
-
-
+    <!--Overlay for when we build the modal ourselves. When combined with CSS, the overlay darkens the screen behind
+    the modal-->
     <div id="overlay">
 
     </div>
-
-{% endblock %}
-
-{% block javascript %}
-    $( ":header" ).css({ background: "#ccc", color: "blue" });
 
 {% endblock %}

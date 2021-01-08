@@ -21,4 +21,5 @@ urlpatterns = [
     path('submit_vif', views.submit_vif, name="submit_vif"),
     path('my_vendors', views.my_vendors, name="my_vendors"),
     path('add_vendor', views.add_vendor, name="add_vendor"),
+    path('edit_vendor', views.EditVendor.as_view, name="edit_vendor"),
 ]
