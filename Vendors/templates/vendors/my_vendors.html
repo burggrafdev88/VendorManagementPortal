@@ -43,12 +43,13 @@
                 <tr id="vendor{{ vendor.id }}">
                     <td>{{ forloop.counter }}</td>
                     <td class="first_name">{{ vendor.f_name }}</td>
-                    <td>{{ vendor.l_name }}</td>
-                    <td>{{ vendor.company }}</td>
-                    <td>{{ vendor.physical_access }}</td>
-                    <td>{{ vendor.logical_access }}</td>
+                    <td class="last_name">{{ vendor.l_name }}</td>
+                    <td class="company">{{ vendor.company }}</td>
+                    <td class="physical_access">{{ vendor.physical_access }}</td>
+                    <td class="logical_access">{{ vendor.logical_access }}</td>
                     <td>{{ vendor.date_submitted }}</td>
-                    <td>{{ vendor.length_of_service }}</td>
+                    <td class="length_of_service">{{ vendor.length_of_service }}</td>
+                    <td class="work_description">{{ vendor.work_description }}</td>
                     <td>
                         <button type="button" class="btn btn-warning" id="editVendorButton{{ vendor.id }}"
                                 data-toggle="modal" data-target="#editVendorModal"

@@ -60,12 +60,37 @@ $(document).on('click', '#editVendorButton', function () {
 });
 
 const editVendorFunction = (id) => {
-    alert("Howdy! " + id);
-
     let tr_id = "#vendor" + id;
     let first_name = $(tr_id).find(".first_name").text();
+    let last_name = $(tr_id).find(".last_name").text();
+    let company = $(tr_id).find(".company").text();
+    let physical_access =$(tr_id).find(".physical_access").text();
+    let logical_access =$(tr_id).find(".logical_access").text();
+    let length_of_service = $(tr_id).find(".length_of_service").text();
+    let work_description = $(tr_id).find(".work_description").text();
+
     alert("Hello " + first_name);
     $('#editVendor input[name=f_name]').val(first_name);
+    $('#editVendor input[name=l_name]').val(last_name);
+    $('#editVendor input[name=company]').val(company);
+
+    if (physical_access === 'True'){
+        $('#editVendor input[name=physical_access]').prop("checked", true);
+    } else {
+        $('#editVendor input[name=physical_access]').prop("checked", false);
+    }
+
+    if (logical_access === 'True'){
+        $('#editVendor input[name=logical_access]').prop("checked", true);
+    } else {
+        $('#editVendor input[name=logical_access]').prop("checked", false);
+    }
+
+    $('#editVendor input[name=length_of_service]').val(length_of_service);
+    $('#editVendor input[name=work_description]').val(work_description);
+
+    $('#editVendor input').attr('readonly', 'readonly');
+    $('#editVendor input').attr('disabled', 'disabled');
 }
 
 

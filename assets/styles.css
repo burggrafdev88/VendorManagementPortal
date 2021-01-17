@@ -143,6 +143,10 @@ h1 + p{
     text-align: center;
 }
 
+.work_description{
+    display: none;
+}
+
 .noData{
     text-align: center;
     background-color: orange;
