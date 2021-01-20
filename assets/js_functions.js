@@ -69,7 +69,6 @@ const editVendorFunction = (id) => {
     let length_of_service = $(tr_id).find(".length_of_service").text();
     let work_description = $(tr_id).find(".work_description").text();
 
-    alert("Hello " + first_name);
     $('#editVendor input[name=f_name]').val(first_name);
     $('#editVendor input[name=l_name]').val(last_name);
     $('#editVendor input[name=company]').val(company);
@@ -89,13 +88,58 @@ const editVendorFunction = (id) => {
     $('#editVendor input[name=length_of_service]').val(length_of_service);
     $('#editVendor input[name=work_description]').val(work_description);
 
-    $('#editVendor input').attr('readonly', 'readonly');
-    $('#editVendor input').attr('disabled', 'disabled');
+    $('#editVendor input').prop('readonly', true);
+    $('#editVendor input').prop('disabled', true);
 }
 
+const enableForm = () => {
+    $('#editVendor input').prop('readonly', false);
+    $('#editVendor input').prop('disabled', false);
+}
+
+// Update Django AJAX call.
+$(document).on('submit', '#editVendor', function() {
+    let first_name = $('#editVendor input[name="f_name"]').val();
+    let last_name = $('#editVendor input[name="l_name"]').val();
+    let company = $('#editVendor input[name="company"]').val();
+    let physical_access = $('#editVendor input[name="physical_access"]').is(":checked");
+    let logical_access = $('#editVendor input[name="logical_access"]').is(":checked");
+    let length_of_service = $('#editVendor input[name="length_of_service"]').val();
+    let work_description = $('#editVendor input[name="work_description"]').val();
+
+    alert('Test ajax function.');
+
+    // var idInput = $('input[name="formId"]').val().trim();
+    // var nameInput = $('input[name="formName"]').val().trim();
+    // var addressInput = $('input[name="formAddress"]').val().trim();
+    // var ageInput = $('input[name="formAge"]').val().trim();
+    // if (nameInput && addressInput && ageInput) {
+    //     // Create Ajax Call
+    //     $.ajax({
+    //         url: '{% url "crud_ajax_update" %}',
+    //         data: {
+    //             'id': idInput,
+    //             'name': nameInput,
+    //             'address': addressInput,
+    //             'age': ageInput
+    //         },
+    //         dataType: 'json',
+    //         success: function (data) {
+    //             if (data.user) {
+    //                 updateToUserTabel(data.user);
+    //             }
+    //         }
+    //     });
+    // } else {
+    //     alert("All fields must have a valid value.");
+    // }
+    // $('form#updateUser').trigger("reset");
+    // $('#myModal').modal('hide');
+    // return false;
+});
 
 // Update Django Ajax Call
-function editUsesr(id) {
+function updateUser(id) {
     if (id) {
 
 
@@ -113,34 +157,3 @@ function editUsesr(id) {
 
 
 
-// // // const closeModalButtons = document.querySelectorAll('[data-close-button]')
-// const overlay = document.getElementById('overlay')
-//
-// openModalButtons.forEach(button => {
-//     button.addEventListener('click', () => {
-//         const modal = document.querySelector(button.dataset.modalAppointmentTarget)
-//         openModal(modal)
-//     })
-// })
-//
-//
-//
-// // closeModalButtons.forEach(button => {
-// //     button.addEventListener('click', () => {
-// //         const modal = button.closest('.modal')
-// //         closeModal(modal)
-// //     })
-// // })
-//
-// function openModal(modal){
-//     if(modal == null) return
-//     console.log('Modal opened.')
-//     modal.classList.add('active')
-//     overlay.classList.add('active')
-// }
-//
-// // function closeModal(modal){
-// //     if(modal == null) return
-// //     modal.classList.remove('active')
-// //     overlay.classList.remove('active')
-// // }
