@@ -7,13 +7,16 @@
 <!--load crispy forms-->
 {% load crispy_forms_tags %}
 
+<!--title block-->
 {% block title %}
     My Vendors
 {% endblock %}
 
+<!--content block-->
 {% block content %}
     <h1>My Vendors</h1>
 
+    <!--flex spread for paragraph and button-->
     <div class="flex-spread">
         <p>Below is the information of the vendors you've submitted procurement request forms for.</p>
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#vendorModal">Add
@@ -21,6 +24,7 @@
         </button>
     </div>
 
+    <!--table to show vendors the user has submitted themselves-->
     <table class="table-format" id="vendorTable">
         <thead>
         <tr>
@@ -35,10 +39,12 @@
             <th>Edit Vendor</th>
             <th>Screening Status</th>
             <th>Schedule Screening</th>
+            <th>Delete Vendor</th>
         </tr>
         </thead>
 
         <tbody>
+            <!--iterate over each vendor in the vendor variable passed from the view-->
             {% for vendor in vendors %}
                 <tr id="vendor{{ vendor.id }}">
                     <td>{{ forloop.counter }}</td>
@@ -47,17 +53,22 @@
                     <td class="company">{{ vendor.company }}</td>
                     <td class="physical_access">{{ vendor.physical_access }}</td>
                     <td class="logical_access">{{ vendor.logical_access }}</td>
-                    <td>{{ vendor.date_submitted }}</td>
+                    <td class="date_submitted">{{ vendor.date_submitted }}</td>
                     <td class="length_of_service">{{ vendor.length_of_service }}</td>
-                    <td class="work_description">{{ vendor.work_description }}</td>
+                    <td class="work_description hidden">{{ vendor.work_description }}</td>
+
+                    <!--button to edit the vendor-->
                     <td>
                         <button type="button" class="btn btn-warning" id="editVendorButton{{ vendor.id }}"
                                 data-toggle="modal" data-target="#editVendorModal"
                                 onclick="editVendorFunction({{ vendor.id }})">Edit
                         </button>
                     </td>
+
+                    <!--form status is a hidden column-->
                     <td>{{ vendor.form_status }}</td>
 
+                     <!--if form status is 1 (submitted) show button to schedule appointment-->
                     {% if vendor.form_status.id == 1 %}
                         <td>
                             <button type="button" class="btn btn-success" data-toggle="modal"
@@ -65,18 +76,26 @@
                                     onclick="scheduleAppointment({{ vendor.id }})">Schedule Apt.
                             </button>
                         </td>
+
+                    <!--otherwise, show button to edit the appointment-->
                     {% else %}
                         <td>
-                            {#                            <a title="Click here to view/edit screening date and time information.">View/Edit Screening Info</a>#}
                             <button type="button" class="btn btn-warning" data-toggle="modal"
                                     data-target="#appointmentModal" id="editAppointment{{ forloop.counter }}"
                                     onclick="retrieveScreeningInfo({{ vendor.id }})">View/Edit
                             </button>
                         </td>
-
                     {% endif %}
+
+                    <!--button for delete vendor function-->
+                    <td>
+                        <button type="button" class="btn btn-danger"
+                                onclick="deleteVendorFunction({{ vendor.id }})">Delete
+                        </button>
+                    </td>
                 </tr>
 
+            <!--if no vendors are in the vendor variable, show message below-->
             {% empty %}
                 <tr>
                     <td colspan="10" class="noData">No Vendors to Show</td>
@@ -99,10 +118,13 @@
                 </div>
 
                 <div class="modal-body">
-                    <form id="addVendorForm">
-                        <!--Django token to protest against cross site request forgeries. Token should be used inside any template
+                    <form id="addVendorForm" action="">
+                        <!--Django token to protect against cross site request forgeries. Token should be used inside any template
                        that uses a POST form that targets internal URLs.-->
                         {% csrf_token %}
+
+                        <!--hidden value that will be used for the bank_poc field-->
+                        <input type="hidden" value="{{ user.id }}" name="user_id">
 
                         <!--form for vendor information form with cripsy filter-->
                         {{ form|crispy }}
@@ -132,6 +154,7 @@
 
                 <div class="modal-body">
                     <form id="editVendor">
+                        <input type="hidden" name="vendor_id">
                         <!--Django token to protest against cross site request forgeries. Token should be used inside any template
                        that uses a POST form that targets internal URLs.-->
                         {% csrf_token %}
@@ -229,12 +252,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <!--Overlay for when we build the modal ourselves. When combined with CSS, the overlay darkens the screen behind
-    the modal-->
-    <div id="overlay">
-
     </div>
 
 {% endblock %}
