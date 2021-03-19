@@ -172,7 +172,68 @@ const deleteVendorFunction = (id) =>{
 }
 
 
+const scheduleAppointmentSetVendorID = (id) =>{
+    let vendorID = id;
+    $('#hidden_vendorID_field').val(vendorID);
+}
+
+//jQuery to schedule screening through AJAX
+$(document).on('submit', '#scheduleScreeningForm', function(){
+    alert('Function called.');
+
+    //set variables equal to fields in the form.
+    // let user_id = $('#scheduleScreeningForm input[name=user_id]').val();
+    let vendor_id = $('#scheduleScreeningForm input[name=vendor_id]').val();
+    let day = $('#scheduleScreeningForm input[name=day]').val();
+    
+    //moment function is from the moment.js package
+    day = moment(day).format('YYYY-MM-DD');
+
+    let start_time = $('#scheduleScreeningForm input[name=start_time]').val();
+    let end_time = $('#scheduleScreeningForm input[name=end_time]').val();
+    let notes = $('#scheduleScreeningForm textarea[name=notes]').val();
+
+    //if all fields have a value, execute an ajax call.
+    if(vendor_id && day && start_time && end_time && notes) {
+
+        //make ajax call
+        $.ajax({
+            url: '/events/schedule_screening_ajax',
+            data: {
+                // '': user_id,
+                'vendor': vendor_id,
+                'day': day,
+                'start_time': start_time,
+                'end_time': end_time,
+                'notes': notes,
+            },
+            dataType: 'json',
+            success: function (data) {
+                if (data) {
+                    alert("Your vendor's appointment has been scheduled.");
+                }
+            },
+            error: function (error) {
+                alert('There was an error. Please try again. ' + error);
+            }
+        });
+    }
+});
 
 
+// //USE THE FUNCTION BELOW TO HELP BUILD MY MOMENT.JS FUNCTION
+// /*Once DOM is fully loaded, run script to format table cells with dates*/
+// window.addEventListener('DOMContentLoaded', (event) => {
+//     console.log("Function to format currencies called.");
+//
+//     let dateElements = document.getElementsByClassName("date");
+//
+//     for(let i = 0; i < dateElements.length; i++){
+//         let date = dateElements[i].innerHTML;
+//
+//         /*moment function is part of the moment.js package*/
+//         date = moment(date).format('M/D/YYYY');
+//         dateElements[i].innerHTML = date;
+//     }    YYYY-MM-DD
 
 

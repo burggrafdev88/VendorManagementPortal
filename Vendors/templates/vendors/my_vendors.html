@@ -73,7 +73,7 @@
                         <td>
                             <button type="button" class="btn btn-success" data-toggle="modal"
                                     data-target="#appointmentModal" id="scheduleAppointment{{ forloop.counter }}"
-                                    onclick="scheduleAppointment({{ vendor.id }})">Schedule Apt.
+                                    onclick="scheduleAppointmentSetVendorID({{ vendor.id }})">Schedule Apt.
                             </button>
                         </td>
 
@@ -107,7 +107,9 @@
     <!--Modal for adding a vendor-->
     <div class="modal fade" id="vendorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
+
         <div class="modal-dialog" role="document">
+
             <div class="modal-content">
 
                 <div class="modal-header">
@@ -189,14 +191,17 @@
                 </div>
 
                 <div class="modal-body">
-                    <form action="/events/schedule_screening/3" method="post">
-                        <!--Django token to protest against cross site request forgeries. Token should be used inside any template
+                    <form id="scheduleScreeningForm" action="">  <!--action="/events/schedule_screening" method=""-->
+                        <!--Django token to protect against cross site request forgeries. Token should be used inside any template
                        that uses a POST form that targets internal URLs.-->
-                        <input type="hidden" name="csrfmiddlewaretoken"
-                               value="SWE8amt3XnLKVP30rmiEHJYABB4FfyKrmoAYFshX2unv9XrBGCQlEcRBUClShhQ5">
+                        {% csrf_token %}
 
-                        <!--form for vendor information form with cripsy filter-->
-                        <input type="hidden" name="vendor" value="3" id="id_vendor">
+                        <!--hidden value that will be used for the userID field-->
+                        <input type="hidden" value="{{ user.id }}" name="user_id">
+
+                        <!--hidden value for vendor ID - set by the scheduleAppointment JavaScript function when
+                        "schedule appointment button is clicked-->
+                        <input type="hidden" id="hidden_vendorID_field" name="vendor_id">
 
                         <div id="div_id_day" class="form-group">
                             <label for="id_day" class="requiredField">
@@ -243,12 +248,12 @@
 
                         </div>
 
-                    </form>
-                </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <input class="btn btn-success" type="submit" value="Submit">
+                        </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>
