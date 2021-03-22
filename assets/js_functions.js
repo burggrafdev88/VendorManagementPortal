@@ -221,19 +221,29 @@ $(document).on('submit', '#scheduleScreeningForm', function(){
 });
 
 
-// //USE THE FUNCTION BELOW TO HELP BUILD MY MOMENT.JS FUNCTION
-// /*Once DOM is fully loaded, run script to format table cells with dates*/
-// window.addEventListener('DOMContentLoaded', (event) => {
-//     console.log("Function to format currencies called.");
-//
-//     let dateElements = document.getElementsByClassName("date");
-//
-//     for(let i = 0; i < dateElements.length; i++){
-//         let date = dateElements[i].innerHTML;
-//
-//         /*moment function is part of the moment.js package*/
-//         date = moment(date).format('M/D/YYYY');
-//         dateElements[i].innerHTML = date;
-//     }    YYYY-MM-DD
+//jQuery to edit screening information through AJAX
+const retrieveScreeningInfo = (id) => {
+    let vendor_id = id;
 
+    // Create ajax call
+    $.ajax({
+        url: '/events/retrieve_screening_info_ajax',
+        data: {
+            'id': vendor_id,
+        },
+        dataType: 'json',
+        success: function (data) {
+            if (data) {
+                alert("AJAX worked.");
+                console.log(data);
+                $('#scheduleScreeningForm input[name=day]').val(data.day);
+            }
+        },
+        error: function (error) {
+            alert(error);
+        }
+    });
+
+
+}
 

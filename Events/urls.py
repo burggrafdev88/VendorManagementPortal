@@ -20,4 +20,5 @@ from . import views
 urlpatterns = [
     path('schedule_screening/<int:vendorID>', views.schedule_screening, name="schedule_screening"),
     path('schedule_screening_ajax', views.schedule_screening_ajax.as_view(), name="schedule_screening_ajax"),
+    path('retrieve_screening_info_ajax', views.retrieveScreeningInfoAJAX.as_view(), name='retrieve_screening_info_ajax'),
 ]

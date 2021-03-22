@@ -1,8 +1,11 @@
+from django.http import JsonResponse
+
 from .forms import ScheduleScreeningForm
 from django.shortcuts import render, redirect, HttpResponse
 from Vendors.models import Vendor
 from Events.models import Event
 from django.views import View
+
 
 # Create your views here.
 def schedule_screening(request, vendorID):
@@ -57,3 +60,25 @@ class schedule_screening_ajax(View):
             status = 'false'
 
         return HttpResponse(status)
+
+
+# retrieve schedule screening information via AJAX
+class retrieveScreeningInfoAJAX(View):
+    print('Retrieve screening information called.')
+
+    def get(self, request):
+        vendor_ID = request.GET.get('id', None)
+        event_object = Event.objects.get(vendor_id=1)  #must remove hard coded '1' for vendor ID
+        # event_object_day = event_object.day
+        event_object_start_time = event_object.start_time
+        # event_object_end_time = event_object.end_time
+
+        event = {'day': event_object.day, 'start_time': event_object_start_time, 'end_time': event_object.end_time,
+                 'notes': event_object.notes
+        }
+
+        data = {
+            'event': event,
+        }
+
+        return JsonResponse(data)
